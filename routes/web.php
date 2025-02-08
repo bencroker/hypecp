@@ -19,4 +19,5 @@ Route::view('wave', 'wave.index');
 Route::post('wave/rooms', [WaveController::class, 'createRoom']);
 Route::post('wave/members', [WaveController::class, 'createMember']);
 Route::get('wave/{code}', [WaveController::class, 'room']);
+Route::get('wave/updater', [WaveController::class, 'updater']);
 

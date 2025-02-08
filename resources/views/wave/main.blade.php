@@ -1,7 +1,7 @@
 @extends('wave.app')
 
 @php
-    
+
     $current_comment = null;
     $me = null;
     $member_arr = session($room->code);
@@ -30,7 +30,7 @@
             <div class="flex max-w-2xl mx-auto px-4 items-center">
     <div class="w-1/2">
         <div class="text-xl mb-1 font-bold">{{ $room->name }}</div>
-        <a class="text-blue-400 text-sm" 
+        <a class="text-blue-400 text-sm"
            href="{{ env('APP_URL').'/wave/'.$room->code }}">
             {{ env('APP_URL').'/wave/'.$room->code }}
         </a>
@@ -63,7 +63,7 @@
 
         </div>
 
-        
+
 
         <div id="chat-container" data-signals-room_id="{{ $room->id }}"
              class="absolute z-10 bottom-0 w-full">
@@ -74,7 +74,7 @@
 
             <div class="w-full bg-slate-50 py-6">
                 <div class="mx-auto max-w-2xl px-4 relative">
-                    
+
                     @if ($me)
                         @include('wave.new-comment')
                     @else
@@ -82,11 +82,11 @@
                     @endif
 
                 </div>
-                
+
             </div>
         </div>
 
-        <div data-on-load="{{ datastar()->get('_datastar/room-updater') }}"></div>
+        <div data-on-load="@get('wave/updater')"></div>
     </div>
 
     <script>
@@ -112,10 +112,10 @@
 
         document.addEventListener("click", function(event) {
             let target = event.target.closest("[copy]"); // Find the closest element with `copy`
-            
+
             if (target) {
                 let textToCopy = target.getAttribute("copy"); // Get the copy attribute value
-                
+
                 if (navigator.clipboard) {
                     navigator.clipboard.writeText(textToCopy).then(() => {
                         showCopyFeedback(target);
